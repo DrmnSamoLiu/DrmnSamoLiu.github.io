@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>The Tapo C200 Research Project</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+</head>
+
+<body id="page-top">
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-aeskeyiv">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">AES Key and IV&nbsp;</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <p style="font-size: 22px;">Thanks to some reversing of /bin/cet, we figured out how the AES key and iv is generated:<br><br>Key : md5sum("admin":nonce)<br>IV : md5sum(nonce:passwd)<br><br>Note that password for digest auth and key generation is from the password
+                        hash we can see in user config file, not your plain text password.&nbsp;</p>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper">
+        <nav class="navbar navbar-dark navbar-expand fixed-top align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="margin-top: 0px;padding-top: 81px;">
+                    <div class="sidebar-brand-text mx-3"><span style="font-size: 22px;">THE Tapo C200<br>Research Proj.</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item" style="margin-top: 56px;"><a class="nav-link" href="index.html"><i class="fas fa-home" style="font-size: 1.5rem;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Home</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="hardware.html"><i class="fas fa-wrench" style="font-size: 1.5rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Hardware</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="console.html"><i class="far fa-window-restore" style="font-size: 1.5rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Console</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="firmware.html"><i class="far fa-file-code" style="font-size: 1.6rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Firmware</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="shell.html"><i class="fas fa-terminal" style="font-size: 1rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Shell</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="flashdump.html"><i class="fas fa-microchip" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Flash Dump</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="userconfig.html"><i class="fas fa-user" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">User Config</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="video.html"><i class="fas fa-video" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Access Video</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="telnet.html"><i class="fas fa-lock-open" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Enable Telnet</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="content-wrapper" style="padding-left: 15rem;">
+            <div id="content" style="border-radius: 9px;padding-left: 0px;">
+                <div class="container-fluid" style="padding-right: 0px;padding-left: 72px;margin-top: 90px;">
+                    <h3 class="text-dark mb-4" style="font-size: 48px;margin: 0px;margin-bottom: 0px;"><strong>Accessing Video Feed</strong><br><span style="font-size: 21px;">Disclaimer :&nbsp;This is a WIP. We've only managed to initiate a video session and decrypt a few frames the C200 is sending us. There's still a lot of work to do to get a stable video feed.&nbsp;<br></span></h3>
+                    <div
+                        style="margin-top: 63px;">
+                        <p style="font-size: 26px;width: 90%;">Let's be honest: no one wants an IoT device that forces you to create an account to be able to use and stream your video through servers god knows who has access to.<br>&nbsp;<br>For a device that's made for security and highly
+                            impacts privacy when compromised, it's very important that every bit of data it sends is within our own control. That's why we tried hard to see if we could get the video feed from the C200 without using the official app.<br><br>There
+                            are three ways to get the video feed from the C200:&nbsp;<br>1. Http service hosted on TCP port 8800<br>2. RTSP service hosted on TCP port 554<br>3. ONVIF<br><br>However ONVIF is basically sending video feed over RTSP, so we're
+                            only left with 1 and 2.<br><br><br></p>
+                        <h1 style="font-size: 37px;margin-top: 41px;">Video Over Http</h1>
+                        <p style="font-size: 26px;width: 90%;margin-top: 27px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">Http is the default way the official app is requesting the video feed.<br>The process is rather simple: <br></p>
+                        <div style="width: 90%;">
+                            <ol start="1" style="font-size: 23px;">
+                                <li>Send&nbsp;<strong>POST</strong>&nbsp;request to&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">http://[ip address]:8800/stream</code>&nbsp;and Authenticate with&nbsp;<strong>digest auth&nbsp;</strong>in request
+                                    header.<br>You will also need to specify&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">Content-Type: multipart/mixed; boundary=--client-stream-boundary--</code>&nbsp;in request header.<br><br></li>
+                                <li>If your authentication succeeded, server will respond&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">HTTP/1.0 200 OK</code>&nbsp;with a special header&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">Key-Exchange:</code>&nbsp;.<br>It
+                                    will contain a&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">nonce</code>&nbsp;that can be used to generate AES decryption key and iv for the incoming video feed. [<a class="btn" data-toggle="modal" data-target="#modal-aeskeyiv">*</a>]<br><br></li>
+                                <li>You then send a continuation packet with json data :<br>&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">{"type":"request","seq":1,"params":{"preview":{"channels":[0],"resolutions":["HD"],"audio":["default"]},"method":"get"}}</code><br>Which
+                                    is the actual request for video feed.<br><br></li>
+                                <li>After some response of json data, the encrypted video feed with&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">Content-Type: video/mp2t</code>&nbsp;will finally come in. You will have to parse the packets and decrypt
+                                    them.</li>
+                            </ol>
+                        </div>
+                        <p style="font-size: 26px;width: 90%;margin-top: 63px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">If what's above is too much to take in, here's the TCP stream from wireshark:<br>Click <a href="assets/img/videopacket.png">here</a> for larger image.<br><br><a data-lightbox="photos" href="assets/img/videopacket.png"><img style="text-align: center;width: 48%;margin-left: 28%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/videopacket.png"></a><br><br>We
+                            wrote a <a href="./assets/code/video_stream.py">python script</a> to automate all of this. Although the result is not perfect, we hope the efforts we made can open up an opportunity for people who have more experience in processing web video stream to refine it. Ultimately
+                            providing a better solution for community that wishes to have more customized way to access their own C200 camera feed.&nbsp;</p>
+                        <h1 style="font-size: 37px;margin-top: 108px;">RTSP and Possible Authentication Bypass</h1>
+                        <p style="font-size: 26px;width: 90%;margin-top: 51px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">TP-Link actually provides a way to let you access C200 via RTSP :&nbsp;<a href="https://www.tp-link.com/us/support/faq/2680/">https://www.tp-link.com/us/support/faq/2680/</a><br><br>However, we found a possible security issue in
+                            this feature.<br>The function responsible for handling RTSP authentication is in&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/bin/cet</code>&nbsp;, located at address&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x42689c</code>&nbsp;:<br><br>
+                            <a
+                                data-lightbox="photos" href="assets/img/rtspcode.png"><img style="text-align: center;width: 48%;margin-left: 28%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/rtspcode.png"></a><br><br>This specific portion of code is checking if
+                                the requested URL contains&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">127.0.0.1</code>&nbsp;or&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">localhost</code>&nbsp;. If it does, then the whole username
+                                / password authentication process will be bypassed.<br><br>The bypass can be clearly demonstrated in wireshark TCP stream. For example, following is what normally happens if you failed to provide valid username and password
+                                to C200 RTSP service:<br><br>&nbsp;<a data-lightbox="photos" href="assets/img/RTSPnormal.png"><img style="text-align: center;width: 77%;margin-left: 14%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/RTSPnormal.png"></a><br><br>RTSP
+                                server will respond&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">RTSP/1.0 401 Unauthorized</code>&nbsp;if you request anything other than OPTIONS.<br>However, if you change the IP address in the request to 127.0.0.1,
+                                then the following will happen:<br><br><a data-lightbox="photos" href="assets/img/RTSPexploit.png"><img style="text-align: center;width: 75%;margin-left: 14%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/RTSPexploit.png"></a><br><br>As
+                                we can see, we successfully set up a RTSP session and have it playing what is supposed to be the video stream.<br>However the video player ( <code style="border: 1px solid rgb(186,175,177) ;">vlc player</code>&nbsp;in this
+                                case ) failed to display anything useful. Unfortunately as for now we are not sure what the issue might be.<br><br>In the example above we are using modified <code style="border: 1px solid rgb(186,175,177) ;">Live555</code>&nbsp;library
+                                for sending RTSP request to the IP address of the C200, but at the same time keeping the request URL containing&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">127.0.0.1</code>&nbsp;. It's not a trivial task, and
+                                building <code style="border: 1px solid rgb(186,175,177) ;">vlc player</code>&nbsp;takes a lot of time. <br><br>Thankfully we found a python script shared by&nbsp;<strong><em>El Sampsa</em>&nbsp;</strong>at Stackoverflow:<br>&nbsp;
+                                <a
+                                    href="https://stackoverflow.com/questions/28022432/receiving-rtp-packets-after-rtsp-setup">https://stackoverflow.com/questions/28022432/receiving-rtp-packets-after-rtsp-setup</a><br><br>His script allows easy separation of target IP address and request URL, however it also does not manage to make sense of everything
+                                    C200 RTSP server is sending. So processing of incoming stream remains to be refined.<br><br></p>
+                </div>
+            </div>
+        </div>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>

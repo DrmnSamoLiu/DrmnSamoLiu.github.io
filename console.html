@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>The Tapo C200 Research Project</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+</head>
+
+<body id="page-top">
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-incase">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong>In Case a Pad Is Broken</strong></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <p style="font-size: 21px;">Mobile repair shops usually will have the equipment and skills to repair broken PCB pads.<br>You can seek for their help and pay a little money to let them repair broken pads or do the soldering for you.<br><br>&nbsp;(Hopefully the
+                        cost for repair will be cheaper than buying a new camera&nbsp;😂)<br><br></p>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-baudrate">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong>Baudrate</strong></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <p style="font-size: 21px;">Baudrate will differ from device to device. You need to specify the correct baudrate for screen, otherwise the data sent and received will be gibberish.<br><br>Modern devices usually use baudrate 57600 or 115200. Some older devices
+                        may have 38400, 19200, 9600 ....&nbsp; You just need to try until you get the correct one..</p>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-ttyusb-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong>The Attached Device Name</strong></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <p style="font-size: 21px;">If you are not connecting any other USB devices that is doing serial communications, then usually the name will end with a 0.<br><br>ttyUSB0 is just a name, it won't be the same through every dongle and OS.<br>Some USB to TTL dongle
+                        will be attached as ttyACM0, and it is perfectly fine. Just make sure to know which virtual device your dongle is connected to.<br><br></p>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper">
+        <nav class="navbar navbar-dark navbar-expand fixed-top align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="margin-top: 0px;padding-top: 81px;">
+                    <div class="sidebar-brand-text mx-3"><span style="font-size: 22px;">THE Tapo C200<br>Research Proj.</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item" style="margin-top: 56px;"><a class="nav-link" href="index.html"><i class="fas fa-home" style="font-size: 1.5rem;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Home</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="hardware.html"><i class="fas fa-wrench" style="font-size: 1.5rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Hardware</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="console.html"><i class="far fa-window-restore" style="font-size: 1.5rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Console</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="firmware.html"><i class="far fa-file-code" style="font-size: 1.6rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Firmware</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="shell.html"><i class="fas fa-terminal" style="font-size: 1rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Shell</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="flashdump.html"><i class="fas fa-microchip" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Flash Dump</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="userconfig.html"><i class="fas fa-user" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">User Config</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="video.html"><i class="fas fa-video" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Access Video</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="telnet.html"><i class="fas fa-lock-open" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Enable Telnet</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="content-wrapper" style="padding-left: 15rem;">
+            <div id="content" style="border-radius: 9px;padding-left: 0px;">
+                <div class="container-fluid" style="padding-right: 0px;padding-left: 72px;margin-top: 90px;">
+                    <h3 class="text-dark mb-4" style="font-size: 48px;margin: 0px;margin-bottom: 0px;"><strong>Getting Console Access</strong></h3><span style="font-size: 21px;">Tl;dr : Baudrate is&nbsp;<strong>57600</strong> bps, login is password protected.</span>
+                    <div style="margin-top: 63px;">
+                        <h1 style="font-size: 48px;"></h1>
+                        <p style="font-size: 26px;width: 90%;">There are some good news and bad news when it comes to getting console access.<br>Good news is that the C200 has its UART pinout marked on the PCB board with correct order, so finding them is not bothering. Bad news is they are
+                            actually UART <strong>pads</strong>&nbsp;that require some soldering to work in a more stable way, unlike pins or <a data-lightbox="photos" href="assets/img/throughole.jpg">through holes</a> that you might find in other devices.<br><a data-lightbox="photos"
+                                href="assets/img/UART.JPG"><img style="text-align: center;width: 40%;margin-left: 30%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/UART.JPG"></a></p>
+                        <p style="font-size: 26px;width: 90%;margin-top: 70px;">You will need a <a data-lightbox="photos" href="assets/img/usb2ttl.jpg">USB to TTL dongle</a> or anything with the capability of communicating over RS232 protocol (such as an arduino or raspberry pi) to access the console. Normally these things will need
+                            to be connected with dupont wires, so we just simply cut one head of a dupont wire and solder it onto the UART pads.<br><strong>Be extra vigilant when soldering to pads on PCB boards!&nbsp; </strong>These pads are extremely
+                            fragile and can be ripped right off from the board [<a class="btn" data-toggle="modal" data-target="#modal-incase">*</a>]. Make sure not to apply too much pulling / pushing force to the wires once they're soldered in place. We used some tape to secure the wires in
+                            place.<br><a data-lightbox="photos" href="assets/img/wire1.jpg" style="margin-left: 5%;"><img style="text-align: center;width: 45%;margin-left: 0px;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/wire1.jpg"></a>
+                            <a
+                                data-lightbox="photos" href="assets/img/wire2.jpg" style="margin-left: 9%;"><img style="text-align: center;width: 40%;margin-left: 0px;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/wire2.jpg"></a>
+                        </p>
+                        <p style="font-size: 26px;width: 90%;margin-top: 70px;">TX stands for <strong>T</strong>ransmit, RX stands for <strong>R</strong>eceive, GND stands for ground. Other pins are usually not needed in the context of accessing console of a consumer device.<br>When connecting USB to TTL dongle
+                            to the PCB board, <strong>remember that TX of one end needs to be connected to RX of the other end</strong>.&nbsp;<br><br><a data-lightbox="photos" href="assets/img/connection.jpg" style="margin-left: 25%;"><img style="text-align: center;width: 50%;margin-left: 0px;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/connection.jpg"></a></p>
+                        <p
+                            style="font-size: 26px;width: 90%;margin-top: 70px;margin-bottom: 100px;">Connect USB to TTL dongle to any linux system, and check the output of&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">dmesg</code>&nbsp;in the terminal (In some linux distro dmesg might require sudo privilege.)<br>If things
+                            are working properly, you should see some output similar to what is shown in the image below. It tells you that the dongle is attached to&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">ttyUSB0</code>&nbsp;[<a class="btn" data-toggle="modal" data-target="#modal-ttyusb-1">*</a>]<br>
+                            <a
+                                data-lightbox="photos" href="assets/img/UartTerminal.jpg" style="margin-left: 25%;"><img style="text-align: center;width: 50%;margin-left: 0px;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/UartTerminal.jpg"></a><br></p>
+                                <p style="font-size: 26px;width: 90%;margin-top: 70px;margin-bottom: 100px;">Knowing the virtual device your dongle is connected to, you can then use&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">screen</code>&nbsp;to communicate with the console of the camera.<br>The full command is&nbsp;
+                                    <code
+                                        style="border: 1px solid rgb(186,175,177) ;">sudo screen /dev/ttyUSB0 57600</code>&nbsp;, 57600 being the <strong>baudrate </strong>for UART communication. [*]<br>After you successfully started&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">screen</code>,
+                                        power on your C200 and you should see its boot log flying through your terminal!<br><br><a data-lightbox="photos" href="assets/img/bootlog.jpg" style="margin-left: 25%;"><img style="text-align: center;width: 50%;margin-left: 0px;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/bootlog.jpg"></a><br></p>
+                                <p
+                                    style="font-size: 26px;width: 90%;margin-top: 70px;margin-bottom: 150px;">So far, so good.<br>But here we are confronted to our first problem: UART console requires login credentials.<br><a data-lightbox="photos" href="assets/img/UARTlogin.jpg" style="margin-left: 18%;"><img style="text-align: center;width: 66%;margin-left: 0px;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/UARTlogin.jpg"></a><br><br>However
+                                    we're not stuck yet. It's time to check if these credentials can be found in the firmware!</p>
+                    </div>
+                </div>
+            </div>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>

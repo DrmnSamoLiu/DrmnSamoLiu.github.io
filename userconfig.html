@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>The Tapo C200 Research Project</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar navbar-dark navbar-expand fixed-top align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="margin-top: 0px;padding-top: 81px;">
+                    <div class="sidebar-brand-text mx-3"><span style="font-size: 22px;">THE Tapo C200<br>Research Proj.</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item" style="margin-top: 56px;"><a class="nav-link" href="index.html"><i class="fas fa-home" style="font-size: 1.5rem;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Home</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="hardware.html"><i class="fas fa-wrench" style="font-size: 1.5rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Hardware</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="console.html"><i class="far fa-window-restore" style="font-size: 1.5rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Console</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="firmware.html"><i class="far fa-file-code" style="font-size: 1.6rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Firmware</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="shell.html"><i class="fas fa-terminal" style="font-size: 1rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Shell</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="flashdump.html"><i class="fas fa-microchip" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Flash Dump</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="userconfig.html"><i class="fas fa-user" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">User Config</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="video.html"><i class="fas fa-video" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Access Video</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="telnet.html"><i class="fas fa-lock-open" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Enable Telnet</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="content-wrapper" style="padding-left: 15rem;">
+            <div id="content" style="border-radius: 9px;padding-left: 0px;">
+                <div class="container-fluid" style="padding-right: 0px;padding-left: 72px;margin-top: 90px;">
+                    <h3 class="text-dark mb-4" style="font-size: 48px;margin: 0px;margin-bottom: 0px;"><strong>Decrypting User Config</strong></h3>
+                    <div style="margin-top: 63px;">
+                        <p style="font-size: 26px;width: 90%;">Knowing how and where user configuration data are stored is always important when evaluating security of a product. You'll never want any bad guy who somehow gained access to your device or flash dump [<span data-toggle="tooltip"
+                                data-bs-tooltip="" title="Either he/she finds the dvice in your trash or physically dump it when you're not at your office.">*</span>] to find the password you used everywhere is conveniently stored in plain text.<br><br>We
+                            used&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">grep</code>&nbsp;and&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">find</code>&nbsp;to see if we can find any user config. (Password, SSID, Wi-Fi passphrase
+                            .... etc.)&nbsp;<br>None of them can be found in our flash dump. This indicates two possibilities: they are either <strong>hashed</strong> or <strong>encrypted</strong>.<br>However since we can't even find the SSID of Wi-Fi
+                            we asked C200 to connect to, it's more likely the whole user config is encrypted and stored somewhere in the flash dump.<br><br>If you've already looked a bit around the firmware file and flash dump, you might have found a
+                            file:&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/etc/usr_conf_data</code>&nbsp;.<br>Its file name looks promising, and <strong>binwalk entropy test</strong> also indicate it's an encrypted file [<span data-toggle="tooltip"
+                                data-bs-tooltip="" title="Constant entropy near 1 is an indication of randomness, thus of proper encryption.">*</span>]:<br><br><a data-lightbox="photos" href="assets/img/usrconfent.jpg"><img style="text-align: center;width: 48%;margin-left: 28%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/usrconfent.jpg"></a></p>
+                        <p
+                            style="font-size: 26px;width: 90%;margin-top: 70px;">However this file is located in&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">squashfs</code>&nbsp;, a read-only file system. Manufacturers use&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">squashfs</code>&nbsp;to
+                            save space and store "static" data that won't be written or changed at runtime. Which means this <code style="border: 1px solid rgb(186,175,177) ;">usr_conf_data</code>&nbsp;can't be the one that's storing user configs. It's
+                            more likely a "factory default".<br></p>
+                            <h1 style="font-size: 37px;margin-top: 108px;">The Good ol' Key</h1>
+                            <p style="font-size: 26px;width: 90%;margin-top: 27px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">Although&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">usr_conf_data</code>&nbsp;probably isn't what we're looking for, it still has its use.<br>It's not a news that TP-Link encrypts user config. They've been encrypting
+                                backup config files since their early products. On the other hand, they are also known for using the same hard-coded encryption key throughout different devices.<br>Here's a blog post that covers this topic :&nbsp;<a href="http://pwn2learn.dusuel.fr/blog/unauthenticated-root-shell-on-tp-link-tl-wr902ac-router/">http://pwn2learn.dusuel.fr/blog/unauthenticated-root-shell-on-tp-link-tl-wr902ac-router/</a><br><br>Unfortunately
+                                in our case although the same encryption library and function still exist, the good ol' DES key&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">\x47\x8d\xa5\x0b\xf9\xe3\xd2\xcf</code>&nbsp;doesn't work.<br><br>Now
+                                we have to hunt for the encryption key. The first thing to do is use&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">grep -ir 'usr_conf_data'</code>&nbsp;to see if there's any script or binary containing / accessing
+                                this specific file name. <br>Luckily only one result is shown :&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/bin/uc_convert</code>&nbsp;.</p>
+                            <h1 style="font-size: 37px;margin-top: 108px;">Finding encryption key</h1>
+                            <p style="font-size: 26px;width: 90%;margin-top: 51px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">After some reverse engineering on&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/bin/uc_convert</code>&nbsp;, it's clear to us that this binary is indeed doing encryption / decryption and other operations of user
+                                config files. We can even simply call&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">uc_convert -t 0</code>&nbsp;and decrypted user config will magically appear in&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/tmp/uc_conf/</code>&nbsp;:<br><br>
+                                <a
+                                    data-lightbox="photos" href="assets/img/uc_convrt.jpg"><img style="text-align: center;width: 48%;margin-left: 28%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/uc_convrt.jpg"></a><br><br>Still, we won't understand where&nbsp;
+                                    <code
+                                        style="border: 1px solid rgb(186,175,177) ;">/bin/uc_convert</code>&nbsp;reads encrypted user config and what the decryption key is just by using it. So further RE is required.<br><br>We invested quite some time in it and managed to find the full chain of user
+                                        config decryption. Here is where obtaining a flash dump proves very useful :&nbsp;<br></p>
+                            <div style="margin-left: 10%;width: 90%;"><code style="color: rgb(122,97,34);font-size: 20px;">main: <br>&nbsp;&nbsp;When it gets -t 0 as option, it calls sub_40100c<br><br>sub_40100c:<br>&nbsp; Checks if first 4 bytes of flash 0x40000 is 0xaabbccdd, if not (which is the case)<br>&nbsp;&nbsp;it calls sub_400fa8<br><br>sub_400fa8:<br>&nbsp; Calls sub_4035c0<br><br>sub_4035c0:<br>&nbsp;&nbsp;Calls sub_403130<br><br>sub_403130:<br>&nbsp;&nbsp;Calls sub_403028(lVar1,0x10000,0x40000),&nbsp;<span style="color: rgb(231,46,46);">which reads "config" partition of flash</span>, 0x40000 ~ 0x50000.<br>&nbsp;&nbsp;If succeed, return data to sub_4035c0<br><br>sub_4035c0:<br>&nbsp;&nbsp;Calls decrypt and unpack function sub_4033e8<br><br>sub_4033e8:<br>&nbsp;&nbsp;Calls sub_402c34 for decryption<br><br>sub_402c34:<br>&nbsp; Calls sub_402924 and later&nbsp;<span style="color: rgb(63,119,204);">des_min_do()</span><br>&nbsp;&nbsp;if sub_402924 fails -&gt; puts("get encrpt key failed!")<br>&nbsp;&nbsp;so sub_402924 should return key<br><br>sub_402924:<br>&nbsp; Calls sub_403028(stack ptr, 0xc, 0x600c0) in which there is some ioctl that reads the content at flash address 0x600c0<br>&nbsp;&nbsp;which is:<br><br><span style="color: rgb(63,119,204);border-style: none;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0 1&nbsp; 2 3&nbsp; 4 5&nbsp; 6 7&nbsp; 8 9&nbsp; A B&nbsp; C D&nbsp; E F&nbsp; |&nbsp; 0123456789ABCDEF<br>&nbsp;&nbsp;000600c0&nbsp;4332 3030 2031 2e30 0000 0000 0000 0000&nbsp; |&nbsp; C200 1.0........<br>&nbsp;&nbsp;000600d0&nbsp;0000 0000 0000 0000 0000 0000 0000 0000&nbsp; |&nbsp; ................<br></span><br>&nbsp;&nbsp;then if everything works fine, there is a call to sub_402890, which if it<br>&nbsp;&nbsp;fails -&gt; puts("make hash string failed!") so sub_402890 is a hash function<br>&nbsp;&nbsp;and if it succeeds, 8 bytes of the hash are memcpy'ed and "returned"<br><br>sub_402890:<br>&nbsp; Does some checks about nulls, then calls sub_4027F0<br>&nbsp;&nbsp;if that call fails, puts("calculate hash value failed!")<br>&nbsp;&nbsp;otherwise it zeroes out some memory and does a<br>&nbsp;&nbsp;snprintf(ptr, 9, "%08x", return_value_of_sub_4027f0) on it<br><br>sub_4027F0:<br>&nbsp; That looks like the proper hash function<br>&nbsp;&nbsp;it does a loop (counter being t8, and one see the loop is over 0xc values,<br>&nbsp;&nbsp;so this 0xc is here again, hard coded...) and goes through bytes of the<br>&nbsp;&nbsp;input string (the loop aborts if one encounter a null byte, so it won't<br>&nbsp;&nbsp;loop over 0xc values here, since the string "C200 1.0" is 8 bytes long)</code></div>
+                            <p
+                                style="font-size: 26px;width: 95%;margin-top: 61px;margin-bottom: 36px;">Don't worry if you don't understand what the above is all about, here's a simple conclusion :&nbsp;<br></p>
+                                <div style="width: 90%;">
+                                    <ol start="1" style="font-size: 23px;">
+                                        <li>&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/bin/uc_convert</code> reads encrypted user config from flash address&nbsp;<strong>0x40000 - 0x50000</strong>, which is the same as partition "config".<br><br></li>
+                                        <li>Decryption key is read from&nbsp;flash address&nbsp;<strong>0x600c0</strong>, with length 0xc (12 bytes).<strong>&nbsp;</strong>The content is "C200 1.0" with some trailing null bytes.<br><br></li>
+                                        <li>"C200 1.0" then goes through a <a href="./assets/code/key.c">hash function</a>, generating hash value :&nbsp;<strong>"5982a0a3"</strong><br><br></li>
+                                        <li>Decryption function calls "des_min_do()", which indicates user config is encrypted using DES.<br>DES has key length of 64 bit ( 8 bytes ), so we will have to convert&nbsp;<strong>"5982a0a3"&nbsp;</strong>into hex
+                                            value -&nbsp;<span style="color: rgb(83,155,239);"><strong>"3539383261306133"</strong></span><br></li>
+                                    </ol>
+                                </div>
+                                <h1 style="font-size: 37px;margin-top: 108px;">Decrypt User Config</h1>
+                                <p style="font-size: 26px;width: 98%;margin-top: 61px;margin-bottom: 36px;margin-left: 10;">Now we've got all information we need to decrypt our user configuration!<br>First thing to do is obtain a dump of "config" partition from flash, which we can achieve easily by following the steps in <a href="flashdump.html">flash dump</a>                                    sector.<br><code style="border: 1px solid rgb(186,175,177) ;">openssl</code>&nbsp;can then help us decrypt the dumped user config file. The full command is :<br><br>&nbsp;<code style="border: 1px solid rgb(186,175,177);margin-left: 10%;color: rgb(183,106,35);">openssl enc -d -des-ecb -nopad -K 3539383261306133 -in [dumped conf] -out [out file]</code>&nbsp;<br><br>If
+                                    everything works fine, we can then use&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">binwalk</code>&nbsp;to analyze the decrypted file. You should see a "<strong>Zlib compressed data</strong>" at offset 0x18
+                                    :<br><br><a data-lightbox="photos" href="assets/img/confdecry.jpg"><img style="text-align: center;width: 53%;margin-left: 23%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/confdecry.jpg"></a><br><br>With&nbsp;
+                                    <code
+                                        style="border: 1px solid rgb(186,175,177) ;">binwalk -e</code>&nbsp;we can extract the compressed data, and finally see the clear text of user config ! [<span data-toggle="tooltip" data-bs-tooltip="" title="They are actually &quot;packed&quot; in a single file, rather then how you see under /tmp/etc/uc_conf.     See further reading if you'd like to know how to unpack them.">*</span>]<br><br>&nbsp;
+                                        <a
+                                            data-lightbox="photos" href="assets/img/usrconfplain.jpg"><img style="text-align: center;width: 39%;margin-left: 29%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/usrconfplain.jpg"></a>
+                                </p>
+                                <h1 style="font-size: 37px;margin-top: 108px;">Further Reading</h1>
+                                <p style="font-size: 26px;width: 98%;margin-top: 61px;margin-bottom: 36px;margin-left: 10;">[Unpack Config File] - WIP<br>[Decrypt Ciphertext] - WIP</p>
+                    </div>
+                </div>
+            </div>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>

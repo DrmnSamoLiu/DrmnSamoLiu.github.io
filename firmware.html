@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>The Tapo C200 Research Project</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar navbar-dark navbar-expand fixed-top align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="margin-top: 0px;padding-top: 81px;">
+                    <div class="sidebar-brand-text mx-3"><span style="font-size: 22px;">THE Tapo C200<br>Research Proj.</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item" style="margin-top: 56px;"><a class="nav-link" href="index.html"><i class="fas fa-home" style="font-size: 1.5rem;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Home</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="hardware.html"><i class="fas fa-wrench" style="font-size: 1.5rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Hardware</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="console.html"><i class="far fa-window-restore" style="font-size: 1.5rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Console</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="firmware.html"><i class="far fa-file-code" style="font-size: 1.6rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Firmware</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="shell.html"><i class="fas fa-terminal" style="font-size: 1rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Shell</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="flashdump.html"><i class="fas fa-microchip" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Flash Dump</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="userconfig.html"><i class="fas fa-user" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">User Config</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="video.html"><i class="fas fa-video" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Access Video</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="telnet.html"><i class="fas fa-lock-open" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Enable Telnet</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="content-wrapper" style="padding-left: 15rem;">
+            <div id="content" style="border-radius: 9px;padding-left: 0px;">
+                <div class="container-fluid" style="padding-right: 0px;padding-left: 72px;margin-top: 90px;">
+                    <h3 class="text-dark mb-4" style="font-size: 48px;margin: 0px;margin-bottom: 0px;"><strong>Getting The Firmware</strong></h3>
+                    <div style="margin-top: 63px;">
+                        <p style="font-size: 26px;width: 90%;">If you have some experience in hardware pentesting, then you know you could try to look for passwords in the&nbsp;<strong>device's firmware</strong>.<br>However, as firmwares have become more and more "targeted" by pentesters and
+                            hackers to find vulnerabilities and sensitive information, manufacturers have been starting to encrypt firmware files they release on their websites. In some cases it's even worse: firmware files may never be released publicly.<br>Unfortunately
+                            in our case it's the latter. As seen in the images below, there is no tab for firmware download in the support page of the C200 camera.<br><br><a data-lightbox="photos" href="assets/img/C200support.jpg"><img style="text-align: center;width: 40%;margin-left: 10%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/C200support.jpg"></a>
+                            <a
+                                data-lightbox="photos" href="assets/img/C7support.jpg"><img style="text-align: center;width: 40%;margin-left: 9%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/C7support.jpg"></a>
+                        </p>
+                        <p style="font-size: 26px;width: 90%;margin-top: 70px;">However, there's always a workaround in such a dire situation. As pentesters, we make our own ways.<br>If the device we target has OTA (over-the-air) upgrade feature, we can try to capture network packets during update process
+                            and see if we can find anything useful.<br><br>There are many ways to achieve this. As C200 is a Wi-Fi camera, we simply setup a raspberry pi as Wi-Fi router and used&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">tcpdump</code>&nbsp;
+                            to capture packets.<br>Using this technique, we successfully got the <a href="http://download.tplinkcloud.com/firmware/Tapo_C200v1_en_1.0.10_Build_200520_Rel.45325n_1594713621606.bin">download URL</a> for the latest firmware
+                            version! (build 200520)<br></p>
+                        <h1 style="font-size: 37px;margin-top: 108px;">Firmware Analysis</h1>
+                        <p style="font-size: 26px;width: 90%;margin-top: 27px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">Using&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">binwalk</code>&nbsp;we can have a first glance [<span data-toggle="tooltip" data-bs-tooltip="" style="color: rgb(39,59,214);" title="We say &quot; first glance &quot; here because the stucture is actually quite different when firmware is written into flash.">*</span>]
+                            at the firmware's structure :<code style="font-size: 18px;color: rgb(157,81,95);border-top-style: none;"><br><br>DECIMAL&nbsp;&nbsp;&nbsp; HEXADECIMAL&nbsp;&nbsp; DESCRIPTION<br>--------------------------------------------------------------------------------<br>25088&nbsp; &nbsp; &nbsp; 0x6200&nbsp; &nbsp; &nbsp; &nbsp; LZMA compressed data, properties: 0x5D, dictionary size: 8388608 bytes, uncompressed size: 111528 bytes<br>66560&nbsp; &nbsp; &nbsp; 0x10400&nbsp; &nbsp; &nbsp; &nbsp;LZMA compressed data, properties: 0x6D, dictionary size: 8388608 bytes, uncompressed size: 4342112 bytes<br>1533440&nbsp; &nbsp; 0x176600&nbsp; &nbsp; &nbsp; Squashfs filesystem, little endian, version 4.0, compression:xz, size: 5635718 bytes, 1041 inodes, blocksize: 262144 bytes, created: 2020-05-20 04:35:30<br>8062720&nbsp;&nbsp;&nbsp; 0x7B0700&nbsp; &nbsp; &nbsp; gzip compressed data, from Unix, last modified: 2020-05-20 04:35:32<br>8250792&nbsp;&nbsp;&nbsp; 0x7DE5A8&nbsp; &nbsp; &nbsp; gzip compressed data, from Unix, last modified: 2020-05-20 04:35:32<br></code><br></p>
+                        <p
+                            style="font-size: 26px;width: 90%;margin-top: 27px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">Content of decompressed file on each offset is as follows :<code style="font-size: 18px;color: rgb(157,81,95);border-top-style: none;border-bottom-width: 1px;border-bottom-style: none;"><br><br>DECIMAL&nbsp;&nbsp;&nbsp; HEXADECIMAL&nbsp;&nbsp; DESCRIPTION<br>--------------------------------------------------------------------------------<br>25088&nbsp; &nbsp; &nbsp; 0x6200&nbsp; &nbsp; &nbsp; &nbsp; <strong>U-boot</strong> (U-Boot 2014.01-v1.2 (May 20 2020 - 12:29:00))<br>66560&nbsp; &nbsp; &nbsp; 0x10400&nbsp; &nbsp; &nbsp; &nbsp;<strong>Linux kernel image</strong> (Linux version 3.10.27 (root@smartlifeci1) (gcc version 4.8.5 20150209 (prerelease) (Realtek RSDK-4.8.5p1 Build 2521) ) #1 PREEMPT Wed May 20 12:35:16 CST 2020)<br>1533440&nbsp; &nbsp; 0x176600&nbsp; &nbsp; &nbsp; <strong>Squashfs filesystem</strong>, little endian, version 4.0, compression:xz, size: 5635718 bytes, 1041 inodes, blocksize: 262144 bytes, created: 2020-05-20 04:35:30<br>8062720&nbsp;&nbsp;&nbsp; 0x7B0700&nbsp; &nbsp; &nbsp; <strong>Basic files and config for C200</strong><br>8250792&nbsp;&nbsp;&nbsp; 0x7DE5A8&nbsp; &nbsp; &nbsp; False positive<br></code><br></p>
+                            <p
+                                style="font-size: 26px;width: 90%;margin-top: 20px;margin-bottom: 150px;">With&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">binwalk -Me</code>&nbsp;we can recursively extract contents from the firmware file. The first thing we want to look for is hard-coded credentials for console login.<br><br>Sure
+                                enough, we found the following entries in&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">[extracted folder]/squashfs-root/etc/passwd</code>&nbsp;:<br><br><a data-lightbox="photos" href="assets/img/passwd.jpg"><img style="text-align: center;width: 48%;margin-left: 28%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/passwd.jpg"></a><br><br>In
+                                there,&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">$1$kX3zxwZJ$oalW3az6H3F/au8T0CB96.</code>&nbsp;is the salted hash of root's password. We tried to crack it with john and hashcat but unfortunately none of them
+                                successfully got the plaintext password.<br>(If by any chance you find out what the plaintext is, please do share it with us!)</p>
+                    </div>
+                </div>
+            </div>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>

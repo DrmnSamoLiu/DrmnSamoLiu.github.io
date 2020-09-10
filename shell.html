@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>The Tapo C200 Research Project</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+</head>
+
+<body id="page-top">
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-bootprocess">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">First and Second Boot</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <p style="font-size: 22px;">It is important that you enter "slp" on second "Autobooting in 1 seconds", because U-boot env arguments are different between these two.<br>First :<br><img src="assets/img/ubootfirst.png" style="width: 100%;"><br><br>Second :<br><img src="assets/img/ubootsecond.png"
+                            style="width: 100%;"><br><br>See the difference especially in bootcmd?</p>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-ubootinit">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">U-Boot Init Process</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <p style="font-size: 22px;">Usually the "init=" argument will default to "/sbin/init" , "initrd" or whatever the underlying linux system requires..<br><br>Here we force boot process to run /bin/sh as the very first program instead of what should be executed normally,
+                        thus evading the login prompt (usually /bin/login).</p>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper">
+        <nav class="navbar navbar-dark navbar-expand fixed-top align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="margin-top: 0px;padding-top: 81px;">
+                    <div class="sidebar-brand-text mx-3"><span style="font-size: 22px;">THE Tapo C200<br>Research Proj.</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item" style="margin-top: 56px;"><a class="nav-link" href="index.html"><i class="fas fa-home" style="font-size: 1.5rem;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Home</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="hardware.html"><i class="fas fa-wrench" style="font-size: 1.5rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Hardware</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="console.html"><i class="far fa-window-restore" style="font-size: 1.5rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Console</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="firmware.html"><i class="far fa-file-code" style="font-size: 1.6rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Firmware</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="shell.html"><i class="fas fa-terminal" style="font-size: 1rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Shell</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="flashdump.html"><i class="fas fa-microchip" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Flash Dump</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="userconfig.html"><i class="fas fa-user" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">User Config</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="video.html"><i class="fas fa-video" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Access Video</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="telnet.html"><i class="fas fa-lock-open" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Enable Telnet</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="content-wrapper" style="padding-left: 15rem;">
+            <div id="content" style="border-radius: 9px;padding-left: 0px;">
+                <div class="container-fluid" style="padding-right: 0px;padding-left: 72px;margin-top: 90px;">
+                    <h3 class="text-dark mb-4" style="font-size: 48px;margin: 0px;margin-bottom: 0px;"><strong>Getting a Shell</strong></h3>
+                    <div style="margin-top: 63px;">
+                        <p style="font-size: 26px;width: 90%;">So far we haven't been successfully getting access to a shell. That's good for manufacturers, but a complete shame for us pentesters!<br>Thankfully the community has a long history of pentesting / modding TP-Link products, and
+                            there are some useful information you can find on the internet. To be more specific - <strong>Access U-Boot shell</strong>.<br>At first we thought the U-Boot console of C200 is locked, as there is no classic "Press any button
+                            to stop boot process" message in the boot log..<br>But after looking a bit on the internet, we found that TP-link actually has a secrete passphrase to enter U-Boot shell. In some product it's&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">tpl</code>,
+                            in some it's&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">slp</code>&nbsp;. In the case of C200, you will need to enter&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">slp</code>&nbsp;when you see "<strong>Autobooting in 1 seconds</strong>"
+                            in the boot log.<br>Beware that C200 cameras actually have two stages of booting. First stage is to verify <code style="border: 1px solid rgb(186,175,177) ;">uboot</code>, <code style="border: 1px solid rgb(186,175,177) ;">kernel</code>&nbsp;and
+                            <code style="border: 1px solid rgb(186,175,177) ;">romfs</code>&nbsp;partition. Then it will reset and enter the "real" boot process.[<a class="btn" data-toggle="modal" data-target="#modal-bootprocess">*</a>]&nbsp;&nbsp;<br><br><a data-lightbox="photos" href="assets/img/bootprocess.jpg"><img style="text-align: center;width: 40%;margin-left: 27%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/bootprocess.jpg"></a></p>
+                        <p
+                            style="font-size: 26px;width: 90%;margin-top: 70px;">Quickly entering&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">slp</code>&nbsp;on second&nbsp;"<strong>Autobooting in 1 seconds</strong>", we will be granted the U-Boot command prompt&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">rlxboot# </code>.
+                            <br>From there on, we can issue&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">printenv</code>&nbsp;to check various U-Boot environment variables.<br>The two important variables we are interested in are&nbsp;
+                            <code
+                                style="border: 1px solid rgb(186,175,177) ;">bootargs</code>&nbsp;and&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">bootcmd</code>&nbsp;:<a data-lightbox="photos" href="assets/img/ubootargs.jpg"><img style="text-align: center;width: 51%;margin-left: 23%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/ubootargs.jpg"></a><br><br>
+                                <code
+                                    style="border: 1px solid rgb(186,175,177);margin-left: 16%;">bootargs=console=ttyS1,57600 root=/dev/mtdblock6 rts-quadspi.channels=dual<br></code><code style="border: 1px solid rgb(186,175,177);margin-left: 16%;">bootcmd=sf probe;sf read 0x82000000 0x60000 0x300000;bootm 0x82000000<br></code></p>
+                                    <p
+                                        style="font-size: 26px;width: 90%;margin-top: 76px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">We can simply add&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">init=/bin/sh</code>&nbsp;at the end of&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">bootargs</code>&nbsp;by issuing :<br><br>
+                                        <code
+                                            style="border: 1px solid rgb(186,175,177);margin-left: 0px;">setenv bootargs console=ttyS1,57600 root=/dev/mtdblock6 rw rts-quadspi.channels=quad init=/bin/sh<br></code><br>After that, just copy-paste the content of&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">bootcmd</code>&nbsp;into
+                                            U-Boot command prompt and press enter. U-Boot should proceed on booting and ultimately you will end up in a root shell! [<a class="btn" data-toggle="modal" data-target="#modal-ubootinit">*</a>]<br><a data-lightbox="photos" href="assets/img/rootshell.jpg"><img style="text-align: center;width: 51%;margin-left: 23%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/rootshell.jpg"></a></p>
+                                            <h1
+                                                style="font-size: 37px;margin-top: 93px;">Now What?</h1>
+                                                <p style="font-size: 26px;width: 90%;margin-top: 27px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">Although we've got a root shell, this doesn't mean we have full control over a fully functional C200 yet.<br>By adding&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">init=/bin/sh</code>&nbsp;into
+                                                    bootargs, we actually skipped a lot of initialization process of the embedded Linux system. No script is executed and places like&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/proc</code>,&nbsp;
+                                                    <code
+                                                        style="border: 1px solid rgb(186,175,177) ;">/dev</code>&nbsp;... that are populated during init process don't have anything in them either.&nbsp; &nbsp;<a data-lightbox="photos" href="assets/img/shellproblem.jpg"><img style="text-align: center;width: 62%;margin-left: 18%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/shellproblem.jpg"></a></p>
+                                                <p
+                                                    style="font-size: 26px;width: 90%;margin-top: 46px;margin-bottom: 78px;">This poses a <strong>huge</strong> problem for us, as many critical commands and functions that can help for information gathering[<span data-toggle="tooltip" data-bs-tooltip="" title="For example, netstat and ps ."
+                                                        style="color: rgb(55,78,251);">*</span>] actually collect information from these directories.<br><br>The first and most important thing we need is to populate&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/proc</code>.&nbsp;We
+                                                    can issue&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">mount -t proc none /proc</code>&nbsp;manually to ask the kernel to populate&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/proc</code>&nbsp;for
+                                                    us.<br><br><br><a data-lightbox="photos" href="assets/img/proc.jpg"><img style="text-align: center;width: 56%;margin-left: 22%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -42px;" src="assets/img/proc.jpg"></a></p>
+                                                    <p
+                                                        style="font-size: 26px;width: 90%;margin-top: 46px;margin-bottom: 68px;">After&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/proc</code>&nbsp;is populated, commands like&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">ps</code>&nbsp;and&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">netstat</code>&nbsp;work
+                                                        properly. However they still won't give much useful information because again, no init process is executed if we use&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">init=/bin/sh</code>&nbsp;technique
+                                                        to get a shell.&nbsp;<br>There is no easy way to execute&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/sbin/init</code>, as PID 1 is assigned to&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/bin/sh</code>&nbsp;-
+                                                        our shell.<br><br><br><a data-lightbox="photos" href="assets/img/popproc.jpg"><img style="text-align: center;width: 56%;margin-left: 22%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -42px;" src="assets/img/popproc.jpg"></a></p>
+                                                        <p
+                                                            style="font-size: 26px;width: 90%;margin-top: 46px;margin-bottom: 150px;">By now it may seem that we haven't really made any progress. But with the information we can get in&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/proc</code>, the best is yet to come.<br><br><br><br>By
+                                                            the way, <a href="file:///D:/%E8%B3%87%E5%AE%89%E8%B3%87%E6%BA%90/C200Web/export/assets/code/c200shell.py">here</a> is a python script I wrote to automate this process, if you are feeling too
+                                                            lazy to do these steps manually :p<br><br> <br><br><br><br><a data-lightbox="photos" href="assets/img/popproc.jpg"></a></p>
+                    </div>
+                </div>
+            </div>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>

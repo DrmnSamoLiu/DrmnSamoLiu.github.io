@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>The Tapo C200 Research Project</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+</head>
+
+<body id="page-top">
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-wordsfroms">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Embedded gzip</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <p style="font-size: 22px;">File size has to be in the flash dump, because gzip spec does not mention a size in header. <br>This is normal... size of a file is size of a file, so why including it?<br><br>But when the file is embedded in a binary blob, size really
+                        has to be written somewhere in a 'home made' header.<br><br></p>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-partition">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">In Case You Forgot.....</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <div class="table-responsive" style="width: 100%;margin-left: 0px;border-style: solid;font-size: 20px;height: 462px;padding-top: 0px;">
+                        <table class="table">
+                            <thead>
+                                <tr style="width: 1097px;"></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center" style="width: 411px;">0x0 - 0x<strong><span style="text-decoration: underline;">1d800</span></strong>&nbsp;<br></td>
+                                    <td class="text-center">factory_boot<br></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">0x<strong><span style="text-decoration: underline;">1d800</span>&nbsp;</strong>- 0x<strong><span style="text-decoration: underline;">20000</span></strong><br></td>
+                                    <td class="text-center">factory_info<br></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">0x<strong><span style="text-decoration: underline;">20000</span>&nbsp;</strong>- 0x<strong><span style="text-decoration: underline;">40000</span></strong><br></td>
+                                    <td class="text-center">art<br></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">0x<strong><span style="text-decoration: underline;">40000</span>&nbsp;</strong>- 0x<strong><span style="text-decoration: underline;">50000</span></strong><br></td>
+                                    <td class="text-center">config<br></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">0x<strong><span style="text-decoration: underline;">50000</span>&nbsp;</strong>- 0x<strong><span style="text-decoration: underline;">60000</span></strong><br></td>
+                                    <td class="text-center">boot<br></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">0x<strong><span style="text-decoration: underline;">60000</span>&nbsp;</strong>- 0x<strong><span style="text-decoration: underline;">1c6400</span></strong><br></td>
+                                    <td class="text-center">kernel<br></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">0x<strong><span style="text-decoration: underline;">1c6400</span>&nbsp;</strong>- 0x<strong><span style="text-decoration: underline;">730000</span></strong><br></td>
+                                    <td class="text-center">rootfs<br></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">0x<strong><span style="text-decoration: underline;">730000</span>&nbsp;</strong>- 0x<strong><span style="text-decoration: underline;">800000</span></strong><br></td>
+                                    <td class="text-center">rootfs_data<br></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper">
+        <nav class="navbar navbar-dark navbar-expand fixed-top align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="margin-top: 0px;padding-top: 81px;">
+                    <div class="sidebar-brand-text mx-3"><span style="font-size: 22px;">THE Tapo C200<br>Research Proj.</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item" style="margin-top: 56px;"><a class="nav-link" href="index.html"><i class="fas fa-home" style="font-size: 1.5rem;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Home</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="hardware.html"><i class="fas fa-wrench" style="font-size: 1.5rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Hardware</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="console.html"><i class="far fa-window-restore" style="font-size: 1.5rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Console</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="firmware.html"><i class="far fa-file-code" style="font-size: 1.6rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Firmware</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="shell.html"><i class="fas fa-terminal" style="font-size: 1rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Shell</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="flashdump.html"><i class="fas fa-microchip" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Flash Dump</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="userconfig.html"><i class="fas fa-user" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">User Config</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="video.html"><i class="fas fa-video" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Access Video</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="telnet.html"><i class="fas fa-lock-open" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Enable Telnet</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="content-wrapper" style="padding-left: 15rem;">
+            <div id="content" style="border-radius: 9px;padding-left: 0px;">
+                <div class="container-fluid" style="padding-right: 0px;padding-left: 72px;margin-top: 90px;">
+                    <h3 class="text-dark mb-4" style="font-size: 48px;margin: 0px;margin-bottom: 0px;"><strong>Enable Telnet Shell</strong><br><span style="font-size: 21px;">WARNING: Operations shown here can potentially brick your device if not followed correctly, proceed at your own risk!<br></span></h3>
+                    <div style="margin-top: 63px;">
+                        <p style="font-size: 26px;width: 90%;">We've already got a shell by using the U-boot&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">bootargs</code>&nbsp;trick. However the shell we have access to is not under the runtime environment of a C200 which booted normally.<br><br>When
+                            analyzing a device, some information can be extremely helpful. For example :<br></p>
+                        <ol start="1" style="font-size: 23px;">
+                            <li>What processes are running? What's the options passed to a binary when it was executed? These can be answered by&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">ps</code>&nbsp;.<br><br></li>
+                            <li>What network ports are open? What processes are listening to them? What connections are made?&nbsp;These can be answered by&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">netstat</code>&nbsp;.<br><br></li>
+                            <li>What drivers/modules are loaded?&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">lsmod</code>&nbsp;can tell us.<br><br></li>
+                            <li>Are there any data or keys generated only on boot?<br><br></li>
+                            <li>.........</li>
+                        </ol>
+                        <p style="font-size: 26px;width: 90%;margin-top: 27px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">The list goes on and on, and different devices will have different questions to be asked.<br>However, the system state when we get a shell through U-boot greatly restricted the information we can gather, and what we can do on the
+                            device [<span data-toggle="tooltip" data-bs-tooltip="" title="For example, upload a debugger and analyze binaries at runtime.">*</span>].<br><br>So, having access to a shell during runtime (and remotely) is the best thing a
+                            pentester can wish for.</p>
+                        <h1 style="font-size: 37px;margin-top: 108px;">Hunt for Vulnerability</h1>
+                        <div style="width: 90%;"></div>
+                        <p style="font-size: 26px;width: 93%;margin-top: 63px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">We can easily find that there is&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">telnetd</code>&nbsp;in the firmware, so the only thing we need to do is find a vulnerability to execute it.<br>Luckily there is a <strong>command injection</strong>                            vulnerability we identified in&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/bin/tp_manage</code>. The guilty function is located at address&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x40a4c8</code>&nbsp;:<br><br>
+                            <a
+                                data-lightbox="photos" href="assets/img/formatstring.png"><img style="text-align: center;width: 48%;margin-left: 28%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/formatstring.png"></a><br><br>Here, the program first decompressed a file
+                                called&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">isp_config.bin</code>&nbsp;, then tries to read&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">product_id</code>&nbsp;from&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/tmp/base-files/etc/config.ini</code><br>If
+                                it successfully reads a product id, it will finally call&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">system()</code>&nbsp;(FUN_0040c240) and execute command&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">uci set device_info.info.product_id=%s</code>&nbsp;with
+                                product id passed to the format string without sanitizing or checks.<br><br>So, if we can manipulate&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">product_id</code>&nbsp;passed to the format string, then in theory
+                                we should be able to run any command we want!<br><br></p>
+                        <h1 style="font-size: 37px;margin-top: 108px;">Where Is Isp_config.bin ?</h1>
+                        <p style="font-size: 26px;width: 92%;margin-top: 51px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">We now know&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">product_id</code>&nbsp;is read from&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/tmp/base-files/etc/config.ini</code>, and this file is decompressed
+                            from&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">isp_config.bin</code>&nbsp;.<br>However we can't find this&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">isp_config.bin</code>&nbsp;anywhere in the firmware
+                            file or flash dump!<br>This indicates that&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">isp_config.bin</code>&nbsp;is created at runtime. Now our priority is to find how it was created.<br><br>It turns out Ghidra
+                            decompiler is making things look more complicated than they really are. Right in the same function, there is the following code:<br><br><a data-lightbox="photos" href="assets/img/ReadART.png"><img style="text-align: center;width: 48%;margin-left: 28%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/ReadART.png"></a><br><br>First
+                            it reads&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x100</code>&nbsp;(256) bytes from flash address&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x20000</code>&nbsp;and stores the data in&nbsp;
+                            <code
+                                style="border: 1px solid rgb(186,175,177) ;">lvar4</code>&nbsp;.<br>Then there's a while loop,&nbsp;reading <code style="border: 1px solid rgb(186,175,177) ;">0x10000</code>&nbsp;(65536) bytes from flash at each iteration, starting at address <code style="border: 1px solid rgb(186,175,177) ;">0x20100</code>.<br>Finally,
+                                after checking some md5 value, the data is written to&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/tmp/isp_config.bin</code>&nbsp;.<br><br></p>
+                        <h1 style="font-size: 37px;margin-top: 108px;">Analyze "art" Partition</h1>
+                        <p style="font-size: 26px;width: 92%;margin-top: 51px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">What deduction can be drawn from the code above ?<br><br></p>
+                        <ol start="1" style="font-size: 23px;">
+                            <li>Address&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x20000</code>&nbsp;of flash is&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">art</code>&nbsp;partition, according to the bootlog&nbsp;<br><br></li>
+                            <li>First&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x100</code>&nbsp;bytes of&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">art</code>&nbsp;may be some kind of header or meta data.<br><br></li>
+                            <li>The meta data contains md5 hash, which is used to verify md5 hash of the data read starting from flash address&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x20100</code>.<br><br></li>
+                        </ol>
+                        <p style="font-size: 26px;width: 92%;margin-top: 27px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">Having the above deduction in mind, we can start by dumping&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">art</code>&nbsp;partition to a file:<br><br><a data-lightbox="photos" href="assets/img/dumpart.png"><img style="text-align: center;width: 48%;margin-left: 28%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/dumpart.png"></a><br><br><br>Using&nbsp;
+                            <code
+                                style="border: 1px solid rgb(186,175,177) ;">binwalk</code>&nbsp;to analyze&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">art.bin</code>&nbsp;we just dumped, we can see there's actually a&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">gzip</code>&nbsp;compressed
+                                file locating at offset&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x100</code>&nbsp;:<br><br><a data-lightbox="photos" href="assets/img/artbinwalk.png"><img style="text-align: center;width: 69%;margin-left: 17%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/artbinwalk.png"></a><br><br>
+                                <code
+                                    style="border: 1px solid rgb(186,175,177) ;">base-files/etc/config.ini</code>&nbsp;can then be found after we extract the compressed data :<br><br><a data-lightbox="photos" href="assets/img/artbinwalk.png"><img style="text-align: center;width: 69%;margin-left: 17%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/vulnfile.png"></a><br><br></p>
+                        <h1
+                            style="font-size: 37px;margin-top: 108px;">Edit and Repack</h1>
+                            <p style="font-size: 26px;width: 92%;margin-top: 27px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">Now we've found our place to put the command we want to execute, let's do that right now:<br><br><a data-lightbox="photos" href="assets/img/commandinject.png"><img style="text-align: center;width: 48%;margin-left: 28%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/commandinject.png"></a><br><br><br>By
+                                adding&nbsp;&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">;telnetd -l /bin/sh</code>&nbsp;after the original product id, a&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">telnetd</code>&nbsp;without login
+                                prompt will be launched when this modified string is read by&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/bin/tp_manage</code>&nbsp;and passed to command&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">uci set device_info.info.product_id=%s</code>&nbsp;.
+                                <a
+                                    data-lightbox="photos" href="assets/img/artbinwalk.png"></a><br><br>What's left for us to do might sound as simple as reverse what we did till now - compress these files and write it back to flash.&nbsp;<br>However let's not forget there is a md5 check for the compress data.
+                                    And by adding our command in <code style="border: 1px solid rgb(186,175,177) ;">product_id</code>, the md5 sum of our compressed data won't be the same with what's originally in&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">art</code>&nbsp;partition
+                                    meta data!<br>Just writing this into flash chip recklessly may result in bricking our C200, nobody wants this to happen.<br><br>We will first have to figure out where the md5 hash resides in the <code style="border: 1px solid rgb(186,175,177) ;">0x100</code>&nbsp;bytes
+                                    of meta data/header.<br><br>Let's take a look at the meta data in hex dump :<br><br><a data-lightbox="photos" href="assets/img/artmetadata.png"><img style="text-align: center;width: 53%;margin-left: 28%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/artmetadata.png"></a><br><br>At
+                                    first sight, it surely looks like a mess. The only easy things that can be spotted are the product name&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">C200_1.0</code>&nbsp;and the firmware version&nbsp;
+                                    <code
+                                        style="border: 1px solid rgb(186,175,177) ;">1.0.10 Build 200520 Rel.45325n</code>.<br>&nbsp;&nbsp;<br>However some deeper inspection allows to identify two important information in this mess [<a class="btn" data-toggle="modal" data-target="#modal-wordsfroms">*</a>]:<br><br><a data-lightbox="photos" href="assets/img/artmetadatataged.png"><img style="text-align: center;width: 53%;margin-left: 28%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/artmetadatataged.png"></a><br>&nbsp;<br><br>We
+                                        can confirm this by using&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">dd</code>&nbsp;to extract&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x0001eab7</code>&nbsp;(125,623) bytes starting
+                                        from offset&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x100</code>, and check its md5sum:<br><br><a data-lightbox="photos" href="assets/img/md5check.png"><img style="text-align: center;width: 70%;margin-left: 21%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/md5check.png"></a><br><br>Amazing,
+                                        right ? 😉</p>
+                            <h1 style="font-size: 37px;margin-top: 108px;">Edit and Repack - Part 2</h1>
+                            <p style="font-size: 26px;width: 92%;margin-top: 27px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">The important meta data are identified, now let's make our customized&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">art.bin</code>&nbsp;partition data.<br><br><a data-lightbox="photos" href="assets/img/commandinject.png"></a>We'll
+                                need to re-compress all the data with our telnetd payload inside, then calculate its <code style="border: 1px solid rgb(186,175,177) ;">md5sum</code>&nbsp;and file size :<br><br><a data-lightbox="photos" href="assets/img/filesizeandmd5.png"><img style="text-align: center;width: 70%;margin-left: 21%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/filesizeandmd5.png"></a><br><br><br>Repacking
+                                is a little more complicated, but hang in there with us:<br>Click <a href="assets/img/catpart.png">here</a> far larger image<br><br><a data-lightbox="photos" href="assets/img/catpart.png"><img style="text-align: center;width: 70%;margin-left: 21%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/catpart.png"></a><br><br>Here
+                                we used&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">dd</code>&nbsp;to extract data portion from the beginning to offset&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x4c</code>&nbsp;as part1, and&nbsp;data
+                                portion from&nbsp;<br>offset&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x4c</code>&nbsp;to offset&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x100</code>&nbsp;as part2.<br><br>After that, we can
+                                use&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">cat</code>&nbsp;and&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">echo</code>&nbsp;to append part1, file size (&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x001eb62</code>&nbsp;),
+                                md5 value and part2 together. This will complete the modification of partition meta data.<br><br>Next, append the whole backdoored gzip file to&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">arttelnetd.bin</code>&nbsp;:<br><br>
+                                <a
+                                    data-lightbox="photos" href="assets/img/catpart.png"><img style="text-align: center;width: 60%;margin-left: 26%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/catgzip.png"></a><br><br>After making sure our gzip file (with file
+                                    signature <code style="border: 1px solid rgb(186,175,177) ;">0x1f8b08</code>&nbsp;) landed at the correct offset, we see that&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">arttelnetd.bin</code>&nbsp;is now&nbsp;
+                                    <code
+                                        style="border: 1px solid rgb(186,175,177) ;">126,050</code>&nbsp;bytes large.<br>However&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">art</code>&nbsp;partition has to be exactly&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">0x20000</code>&nbsp;(131,072)
+                                        bytes large, as defined in C200's flash partition table [<a class="btn" data-toggle="modal" data-target="#modal-partition">*</a>], so the last thing we need to do is put some padding of <code style="border: 1px solid rgb(186,175,177) ;">0xff</code>&nbsp;at the end of&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">arttelnetd.bin</code>&nbsp;and
+                                        make it exactly&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">131,072</code>&nbsp;bytes large.<br><br><a data-lightbox="photos" href="assets/img/padding.png"><img style="text-align: center;width: 60%;margin-left: 26%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/padding.png"></a><br><br>In
+                                        our case we need to put 5022 bytes of padding, so our command will be as follows:<br><br><code style="border: 1px solid rgb(186,175,177);margin-left: 27%;color: rgb(150,103,49);">for i in {1..5022}; do echo -ne "\xff" &gt;&gt; arttelnetd.bin; done<br></code><br>Check
+                                        the file size of&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">arttelnetd.bin</code>&nbsp;one last time. If it's&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">131,072</code>&nbsp;, then we finally
+                                        made our customized version of&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">art</code>&nbsp;partition!&nbsp;🥳🥳</p>
+                            <h1 style="font-size: 37px;margin-top: 108px;">Writing Our Customized Data Into Flash<br><span style="font-size: 21px;color: rgb(241,0,0);border-width: 1px;border-style: solid;">WARNING: Operations shown here can potentially brick your device if not followed correctly, proceed at your own risk!<br></span></h1>
+                            <p
+                                style="font-size: 26px;width: 92%;margin-top: 27px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);"><br>Our backdoored&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">art</code>&nbsp;partition is ready, only thing left is to write it into the flash chip.<br>There's a binary called&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">mtd</code>&nbsp;conveniently
+                                built in C200 that serves exactly this purpose:<br><br><a data-lightbox="photos" href="assets/img/mtdhelp.png"><img style="text-align: center;width: 60%;margin-left: 26%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/mtdhelp.png"></a><br><br>
+                                <code
+                                    style="border: 1px solid rgb(186,175,177) ;">mtd</code>&nbsp;only deal with&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">mtdX</code>&nbsp;virtual devices, not&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">mtdblockX</code>&nbsp;. So we'll have
+                                    to use&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">mknod</code>&nbsp;to create a node for&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">art</code>&nbsp;partition, which is&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/dev/mtd2</code>.<br><br>
+                                    <a
+                                        data-lightbox="photos" href="assets/img/mtd2.png"><img style="text-align: center;width: 60%;margin-left: 26%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/mtd2.png"></a><br><br>Here we also checked the head and tail
+                                        of&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/dev/mtd2</code>, just to make sure it really is accessing the part of flash chip we wish to modify.<br><br>If everything went well, let's put our customized&nbsp;
+                                        <code
+                                            style="border: 1px solid rgb(186,175,177) ;">arttelnetd.bin</code>&nbsp;into SD card and insert it into C200:<br><br><a data-lightbox="photos" href="assets/img/sdcard.png"><img style="text-align: center;width: 60%;margin-left: 26%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/sdcard.png"></a><br><br>
+                                            <code
+                                                style="border: 1px solid rgb(186,175,177) ;">arttelnetd.bin</code>&nbsp;- check&nbsp;✅<br><code style="border: 1px solid rgb(186,175,177) ;">/dev/mtd2</code>&nbsp;- check&nbsp;✅<br><br>Finally, it's time to really write our backdoored partition into flash:<br><br>
+                                                <a
+                                                    data-lightbox="photos" href="assets/img/writeflash.png"><img style="text-align: center;width: 60%;margin-left: 26%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/writeflash.png"></a><br><br>Just like that, our backdoored
+                                                    partition is written into flash.<br><br>Now, reboot your C200 and <span style="text-decoration: line-through;">hope for the best</span>&nbsp;enjoy your runtime telnet root shell!<br><br><a data-lightbox="photos"
+                                                        href="assets/img/telnet.png"><img style="text-align: center;width: 73%;margin-left: 20%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -4px;" src="assets/img/telnet.png"></a><br><br><br><br><br></p>
+                    </div>
+                </div>
+            </div>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>

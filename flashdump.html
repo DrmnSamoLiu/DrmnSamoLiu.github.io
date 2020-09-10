@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>The Tapo C200 Research Project</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/untitled.css">
+</head>
+
+<body id="page-top">
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-proscons">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Pros and Cons</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <p style="font-size: 22px;">Although we said runtime is better, in some cases there might be some data or file deleted after device boot.<br>So it's a good habit to try obtaining a flash dump before your device has even been fully booted once.</p>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-incase">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">If PCB Pad is Broken</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <p style="font-size: 22px;">Again, if any soldering pad on your device was broken by accident (trust us, it happens ;), you can seek help from mobile or laptop repair shops.&nbsp;</p>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-mtdvsmtdblock">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">MTD vs MTDblock</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <p style="font-size: 22px;">You might wonder what's the difference between "mtd" and "mtdblock".<br>It's quite difficult to explain, but in short:<br><br>"mtd" is a character device while&nbsp;"mtdblock" is a block device.<br><br>They are the same if we are just
+                        reading data from them with cat or hexdump, but character devices and block devices have different ways of doing operations such as writing, reading or erasing.</p>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="modal-squashfs">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Read-only SquashFS</h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <p style="font-size: 22px;">The file system we landed in is actually a squashfs, as can be checked with the "mount" command.<br>Squashfs is known for its great compression rate, but it's also a read-only file system. So we won't be able to write anything that's
+                        inside squashfs.<br><br>Because we bypassed most of the initialization process, /dev is basically just another regular directory under squashfs if we don't do anything.<br>If we want to write to it, we'll have to mount a tmpfs
+                        on it.</p>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper">
+        <nav class="navbar navbar-dark navbar-expand fixed-top align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="margin-top: 0px;padding-top: 81px;">
+                    <div class="sidebar-brand-text mx-3"><span style="font-size: 22px;">THE Tapo C200<br>Research Proj.</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item" style="margin-top: 56px;"><a class="nav-link" href="index.html"><i class="fas fa-home" style="font-size: 1.5rem;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Home</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="hardware.html"><i class="fas fa-wrench" style="font-size: 1.5rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Hardware</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="console.html"><i class="far fa-window-restore" style="font-size: 1.5rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Console</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="firmware.html"><i class="far fa-file-code" style="font-size: 1.6rem;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Firmware</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="shell.html"><i class="fas fa-terminal" style="font-size: 1rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Shell</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="flashdump.html"><i class="fas fa-microchip" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Flash Dump</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="userconfig.html"><i class="fas fa-user" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">User Config</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="video.html"><i class="fas fa-video" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Access Video</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="telnet.html"><i class="fas fa-lock-open" style="font-size: 1.2rem;margin-right: 4px;width: 27px;"></i><span style="font-size: 1.5rem;margin-left: 0px;">Enable Telnet</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="content-wrapper" style="padding-left: 15rem;">
+            <div id="content" style="border-radius: 9px;padding-left: 0px;">
+                <div class="container-fluid" style="padding-right: 0px;padding-left: 72px;margin-top: 90px;">
+                    <h3 class="text-dark mb-4" style="font-size: 48px;margin: 0px;margin-bottom: 0px;"><strong>Dumping Flash Content</strong></h3>
+                    <div style="margin-top: 63px;">
+                        <p style="font-size: 26px;width: 90%;">It may sound weird to some people that we are trying to perform a flash dump at this point. After all, we've already got the firmware file, right?<br>It's important to understand in terms of analyzing a device, that having access
+                            to <strong>runtime environment</strong> is better than having a <strong>flash dump</strong>; having a flash dump is better than having a <strong>firmware file</strong> for upgrade; and having a firmware file is way better than
+                            having nothing.<br><br>The logic behind this is that runtime environment is, well, how the device is really working. And flash dump is an image of the system's data storage with some private data (like the hard drive of your
+                            computer). Firmware file is more like an installation image of your OS. The amount of information within them is different.&nbsp;<br><br>Of course, the above statement is just the reflection of a general mindset. It is not
+                            an absolute truth, as each situation has its own pros and cons. [<a class="btn" data-toggle="modal" data-target="#modal-proscons">*</a>]<br><br></p>
+                        <h1 style="font-size: 37px;margin-top: 108px;">The "Hard" Way</h1>
+                        <p style="font-size: 26px;width: 90%;margin-top: 30px;">Dumping flash usually needs to be done the "hard" way, i.e. desoldering the flash chip and reading it with compatible hardware. Usually this can be done with reasonable soldering skills and simple hardware like a raspberry pi with
+                            <strong>wide body SOP8</strong> chip socket and <a href="https://www.flashrom.org/Flashrom">flashrom</a>.<br><br>However, the C200 makes use of a flash chip made by XMC - a not so well known flash chip manufacturer. A raspberry
+                            pi alone will have hard a time reading the flash content and reliably (compared to dumping flash chips from Winbond or GigaDevice).<br>This is due to the fact that the flash chip used in the C200 can't work properly under the
+                            raw currents and voltages a raspberry pi is providing. You will thus need to use some more specific hardware to communicate with the SPI flash chip.<br>For example, we have to use a buspirate and an external 3.3V power supply
+                            to obtain a stable and consistent flash dump.&nbsp;<br><br><br><br><a data-lightbox="photos" href="assets/img/hardware.jpg"><img style="text-align: center;width: 58%;margin-left: 20%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -43px;" src="assets/img/hardware.jpg"></a><br><br></p>
+                        <p
+                            style="font-size: 26px;width: 90%;margin-top: 76px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">Desoldering the flash chip and dumping it is the most straightforward and fastest way. However it presents some risks.<br>First of all, heating the flash chip too much and for a prolonged period of time can damage it. <br>Second,
+                            as mentioned before in "<a href="console.html">Console</a>" section, PCB pads are extremely fragile. If you are not careful enough during the (de)soldering process, you can rip the pads off and render your device useless after
+                            dumping the flash [<a class="btn" data-toggle="modal" data-target="#modal-incase">*</a>]. <br><br>Here's a victim of mine :&nbsp; <br><a data-lightbox="photos" href="assets/img/brokenpad1.jpg"><img style="text-align: center;width: 43%;margin-left: 6%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/brokenpad1.jpg"></a>
+                            <a
+                                data-lightbox="photos" href="assets/img/brokenpad2.jpg"><img style="text-align: center;width: 43%;margin-left: 6%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/brokenpad2.jpg"></a><br>&nbsp;<br>Practice soldering, don't do as i do&nbsp;😝
+                                !<br></p>
+                                <h1 style="font-size: 37px;margin-top: 93px;">The Safe Way</h1>
+                                <p style="font-size: 26px;width: 90%;margin-top: 27px;color: rgb(133,135,150);border-color: rgba(225,41,29,0);">Tinkering with hardware isn't for every one. But thankfully, the C200 provides us with enough information to dump the whole flash content in a safer programmatic way.<br>First of all, we can take a look at this specific
+                                    portion of the boot log :<br><a data-lightbox="photos" href="assets/img/bootlogpartition.jpg"><img style="text-align: center;width: 62%;margin-left: 18%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/bootlogpartition.jpg"></a><br><br><br>Let
+                                    me make it clearer [<span data-toggle="tooltip" data-bs-tooltip="" title="&quot;fimware&quot; portion (0x60000 - 0x800000) is overlapping previous portions, so we can ignore it.">*</span>]:<br></p>
+                                <div class="table-responsive" style="width: 47%;margin-left: 19%;border-style: solid;font-size: 20px;height: 462px;padding-top: 0px;">
+                                    <table class="table">
+                                        <thead>
+                                            <tr style="width: 1097px;"></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center" style="width: 411px;">0x0 - 0x<strong><span style="text-decoration: underline;">1d800</span></strong>&nbsp;<br></td>
+                                                <td class="text-center">factory_boot<br></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">0x<strong><span style="text-decoration: underline;">1d800</span>&nbsp;</strong>- 0x<strong><span style="text-decoration: underline;">20000</span></strong><br></td>
+                                                <td class="text-center">factory_info<br></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">0x<strong><span style="text-decoration: underline;">20000</span>&nbsp;</strong>- 0x<strong><span style="text-decoration: underline;">40000</span></strong><br></td>
+                                                <td class="text-center">art<br></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">0x<strong><span style="text-decoration: underline;">40000</span>&nbsp;</strong>- 0x<strong><span style="text-decoration: underline;">50000</span></strong><br></td>
+                                                <td class="text-center">config<br></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">0x<strong><span style="text-decoration: underline;">50000</span>&nbsp;</strong>- 0x<strong><span style="text-decoration: underline;">60000</span></strong><br></td>
+                                                <td class="text-center">boot<br></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">0x<strong><span style="text-decoration: underline;">60000</span>&nbsp;</strong>- 0x<strong><span style="text-decoration: underline;">1c6400</span></strong><br></td>
+                                                <td class="text-center">kernel<br></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">0x<strong><span style="text-decoration: underline;">1c6400</span>&nbsp;</strong>- 0x<strong><span style="text-decoration: underline;">730000</span></strong><br></td>
+                                                <td class="text-center">rootfs<br></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">0x<strong><span style="text-decoration: underline;">730000</span>&nbsp;</strong>- 0x<strong><span style="text-decoration: underline;">800000</span></strong><br></td>
+                                                <td class="text-center">rootfs_data<br></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p style="font-size: 26px;width: 90%;margin-top: 46px;margin-bottom: 23px;">Why is this important?<br>We can see that the hex value is incrementing, and it ends at 0x800000. Let's remember this for a while.<br>Next we can check the datasheet of the XM25QH64A flash chip used in the C200.<br><br>In
+                                    the "Memory Organization" section, the datasheet contains the following information:<br><br><br><a data-lightbox="photos" href="assets/img/XMC.jpg"><img style="text-align: center;width: 56%;margin-left: 22%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -42px;" src="assets/img/XMC.jpg"></a><br><br>We
+                                    can see from here that this flash chip has&nbsp;<strong>8,388,608</strong> bytes of memory capacity, and guess what? 0x800000 is exactly 8,388,608 in decimal value!<br><br>So by now we know that this information in
+                                    boot log is actually telling you the <strong>physical mapping</strong> of flash memory address to its partition name.&nbsp;<br><br></p>
+                                <h1 style="font-size: 37px;margin-top: 93px;">MTD and MTDblock devices</h1>
+                                <p style="font-size: 26px;width: 90%;margin-top: 38px;margin-bottom: 7px;">Having the partition names in mind, we can check&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/proc/mtd</code>&nbsp;with command&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">cat /proc/mtd</code>.<br><br><br>
+                                    <a
+                                        data-lightbox="photos" href="assets/img/mtd.jpg"><img style="text-align: center;width: 29%;margin-left: 32%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -42px;" src="assets/img/mtd.jpg"></a><br><br>Looks familiar?<br>The information
+                                        in&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/proc/mtd</code>&nbsp;is in particular telling you what&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">mtd</code>&nbsp;<strong>virtual device</strong>                                        each partition of the flash chip is attached to. For example, "factory_boot" is attached to <code style="border: 1px solid rgb(186,175,177) ;">mtd0</code>.<br><br>We can also take a look at&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/proc/partitions</code>&nbsp;:<br><br><br>
+                                        <a
+                                            data-lightbox="photos" href="assets/img/mtdblock.jpg"><img style="text-align: center;width: 29%;margin-left: 32%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -42px;" src="assets/img/mtdblock.jpg"></a><br><br>This shows the mapping of flash
+                                            partitions to&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">mtdblock</code>&nbsp;virtual devices. [<a class="btn" data-toggle="modal" data-target="#modal-mtdvsmtdblock">*</a>]<br>Now, if we can get access to these virtual devices, then we may have a chance to directly read
+                                            the contents of the flash chip!&nbsp;<br><br></p>
+                                <p style="font-size: 26px;width: 93%;margin-top: 9px;margin-bottom: 26px;">Usually in a fully initialized Linux system, we will see these virtual devices under&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/dev</code>&nbsp;. However, there's currently nothing under&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/dev</code>&nbsp;directory
+                                    as we bypassed the initialization process of the C200 to get a shell. Therefore we'll have to manually create them one by one.<br>First of all we'll have to make <code style="border: 1px solid rgb(186,175,177) ;">/dev</code>&nbsp;writable
+                                    [<a class="btn" data-toggle="modal" data-target="#modal-squashfs">*</a>] . Issue command&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">mount -t tmpfs tmpfs /dev -o mode=0755,size=512K</code>&nbsp;to mount a&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">tmpfs</code>&nbsp;on&nbsp;
+                                    <code
+                                        style="border: 1px solid rgb(186,175,177) ;">/dev</code>&nbsp;. After that, mounting a&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">mtdblock</code>&nbsp;device is as simple as issuing command:<br><br>&nbsp;<code style="margin-left: 31%;border: 1px none rgb(186,175,177);color: rgb(170,89,14);">mknod /dev/mtdblockX b [major] [minor]</code>&nbsp;<br><br>For
+                                        example, to access "factory_boot" (mtdblock0), simply issue command&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">mknod /dev/mtdblock0 b 31 0</code>&nbsp;. This will make a virtual device node of&nbsp;
+                                        <code
+                                            style="border: 1px solid rgb(186,175,177) ;">mtdblock0</code>&nbsp;under&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/dev</code>&nbsp;. You can then access this partition of flash chip with various tools and programs in the OS.<br><br><br><a data-lightbox="photos"
+                                                href="assets/img/popproc.jpg"></a></p>
+                                <h1 style="font-size: 37px;margin-top: 15px;">Dumping Flash Content Into a File</h1>
+                                <p style="font-size: 26px;width: 93%;margin-top: 9px;margin-bottom: 26px;">Our ultimate goal here is to obtain an image of the physical flash chip content.<br>Now we've managed to create virtual device nodes for each partitions, the only thing left is to write all the contents of each node into
+                                    a file and extract it. <br>However, up to now, there is no network access, and transferring 8MB of data over serial console will take forever.<br>Fortunately, C200 cameras have an SD card slot for storing recorded videos.
+                                    We can use this feature to our advantage and dump the flash to an SD card!<br>&nbsp;<br>Insert a&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">fat32</code>&nbsp;formatted SD card into the slot and after a
+                                    while, the console should tell you it has detected an SD card. And if you check&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/proc/partitions</code>&nbsp;again, you will find two new entries :&nbsp;<strong>mmcblk0</strong>                                    and <strong>mmcblk0p1. </strong>These are the virtual device for your SD card.<br><br><br><a data-lightbox="photos" href="assets/img/sdcardinsert.jpg"><img style="text-align: center;width: 51%;margin-left: 24%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -42px;" src="assets/img/sdcardinsert.jpg"></a><br><br>To
+                                    read / write to your SD card, you'll have to :<br><br>1. Create a node for <strong>mmcblk0p1.</strong><br>2. Mount the node to a directory in the system.<br><br>First step is simple, we've already done it before.&nbsp;
+                                    <code
+                                        style="border: 1px solid rgb(186,175,177) ;">mknod /dev/mmcblk0p1 b 179 1</code>&nbsp;will do the trick and create a node for us.<br>To achieve step 2, we can just simply mount it under&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/dev</code>&nbsp;(which
+                                        is currently writable). But for the sake of cultivating good habits, let's mount it under&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/tmp</code>&nbsp;.<br><br>Issue following command in order :<br>
+                                        <code
+                                            style="border: 1px solid rgb(186,175,177) ;">mount tmpfs /tmp -t tmpfs -o size=20633600,nosuid,nodev,mode=1777</code>&nbsp;[<span data-toggle="tooltip" data-bs-tooltip="" title="Taken from lib/preinit/10_essential_fs">*</span>]<br><code style="border: 1px solid rgb(186,175,177) ;">mkdir /tmp/sdcard</code><br>
+                                            <code
+                                                style="border: 1px solid rgb(186,175,177) ;">mount -t vfat /dev/mmcblk0p1 /tmp/sdcard/</code><br><br>And now you will be able to read / write to your SD card under&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/tmp/sdcard</code>&nbsp;.<br><br>The
+                                                final step is to actually write the flash contents into a file and store it in your SD card. We can&nbsp;achieve this with a simple command we used again and again -&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">cat</code>&nbsp;.<br>Simply&nbsp;
+                                                <code
+                                                    style="border: 1px solid rgb(186,175,177) ;">cat /dev/mtdblock0 &gt;&gt; /tmp/sdcard/flashdump.bin</code>&nbsp;and the content of&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/dev/mtdblock0</code>&nbsp;will be appended into&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">/tmp/sdcard/flashdump.bin</code>.<br>Loop
+                                                    this command through /dev/mtdblock0 to /dev/mtdblock7 and you will get a dump of the entire flash chip!<br><br><br><a data-lightbox="photos" href="assets/img/dumping.jpg"><img style="text-align: center;width: 51%;margin-left: 24%;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: -42px;" src="assets/img/dumping.jpg"></a><br><br>Finally,
+                                                    use&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">umount /tmp/sdcard</code>&nbsp;to safely unmount your SD card, whose content can now be transferred to a PC.<br><br><br><br><br></p>
+                    </div>
+                </div>
+            </div>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>
