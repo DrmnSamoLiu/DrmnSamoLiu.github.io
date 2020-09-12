@@ -35,7 +35,7 @@
                     <h4 class="modal-title"><strong>Baudrate</strong></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                 <div class="modal-body">
                     <p style="font-size: 21px;">Baudrate will differ from device to device. You need to specify the correct baudrate for screen, otherwise the data sent and received will be gibberish.<br><br>Modern devices usually use baudrate 57600 or 115200. Some older devices
-                        may have 38400, 19200, 9600 ....&nbsp; You just need to try until you get the correct one..</p>
+                        may have 38400, 19200, 9600 ....&nbsp; You just need to try until you get the correct one.</p>
                 </div>
                 <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
             </div>
@@ -99,7 +99,7 @@
                                 data-lightbox="photos" href="assets/img/UartTerminal.jpg" style="margin-left: 25%;"><img style="text-align: center;width: 50%;margin-left: 0px;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/UartTerminal.jpg"></a><br></p>
                                 <p style="font-size: 26px;width: 90%;margin-top: 70px;margin-bottom: 100px;">Knowing the virtual device your dongle is connected to, you can then use&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">screen</code>&nbsp;to communicate with the console of the camera.<br>The full command is&nbsp;
                                     <code
-                                        style="border: 1px solid rgb(186,175,177) ;">sudo screen /dev/ttyUSB0 57600</code>&nbsp;, 57600 being the <strong>baudrate </strong>for UART communication. [*]<br>After you successfully started&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">screen</code>,
+                                        style="border: 1px solid rgb(186,175,177) ;">sudo screen /dev/ttyUSB0 57600</code>&nbsp;, 57600 being the <strong>baudrate </strong>for UART communication. [<a class="btn" data-toggle="modal" data-target="#modal-baudrate">*</a>]<br>After you successfully started&nbsp;<code style="border: 1px solid rgb(186,175,177) ;">screen</code>,
                                         power on your C200 and you should see its boot log flying through your terminal!<br><br><a data-lightbox="photos" href="assets/img/bootlog.jpg" style="margin-left: 25%;"><img style="text-align: center;width: 50%;margin-left: 0px;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/bootlog.jpg"></a><br></p>
                                 <p
                                     style="font-size: 26px;width: 90%;margin-top: 70px;margin-bottom: 150px;">So far, so good.<br>But here we are confronted to our first problem: UART console requires login credentials.<br><a data-lightbox="photos" href="assets/img/UARTlogin.jpg" style="margin-left: 18%;"><img style="text-align: center;width: 66%;margin-left: 0px;box-shadow: 7px 7px 6px rgba(44,45,50,0.58);border-radius: 15px;margin-top: 36px;" src="assets/img/UARTlogin.jpg"></a><br><br>However
